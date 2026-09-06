@@ -1,0 +1,95 @@
+body {
+    margin: 0;
+    color: #162d4f;
+    background: linear-gradient(#e6f4ff, #ffffff);
+    font-family: "Libre Caslon Text", Georgia, serif;
+    min-height: 100vh;
+}
+h1 {
+    color: #235fd4;
+    font-size: 2.5rem;
+    text-shadow: 0 2px 4px rgba(35, 95, 212, 0.15);
+}
+.tagline {
+    color: #df5034;
+}
+.hero {
+    padding: 3rem 1rem 1rem;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+main {
+    max-width: 40rem;
+    margin: 0 auto;
+    padding: 0 1rem 4rem;
+    position: relative;
+    z-index: 1;
+}
+.globe-card {
+    background: #fdf7e8;
+    border-radius: 50%;
+    border: 2px solid #235fd4;
+    padding: 2rem;
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    background: radial-gradient(circle at 30% 35%, #ffffff, #d4eafc);
+    align-items: center;
+}
+.globe {
+    width: 12rem;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.scene {
+    width: 100%;
+    height: auto;
+}
+.controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+}
+#message {
+    font-style: italic;
+    margin: 0;
+}
+button {
+    font: inherit;
+    color: #ffffff;
+    background: #df5034;
+    border: none;
+    border-radius: 20px;
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    transition: background 150ms ease, transform 150ms ease;
+}
+button:hover {
+    background: #a43835;
+    transform: scale(1.05);
+}
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+@keyframes shake {
+  0%, 100% { transform: translateX(0) rotate(0deg); }
+  20% { transform: translateX(-0.6rem) rotate(-4deg); }
+  40% { transform: translateX(0.6rem) rotate(4deg); }
+  60% { transform: translateX(-0.4rem) rotate(-2deg); }
+  80% { transform: translateX(0.4rem) rotate(2deg); }
+}
+.globe.shaking {
+  animation: shake 600ms ease;
+}
+footer {
+    text-align: center;
+    font-size: 0.9rem;
+    opacity: 0.8;
+    padding-bottom: 2rem;
+}
