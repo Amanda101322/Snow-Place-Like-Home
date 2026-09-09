@@ -17,7 +17,7 @@ button.addEventListener("click", () => {
     // to trigger the shake animation class
     globe.classList.add("shaking");
 
-    // Removes animation class after 600ms so you can shake it again
+    // Removes animation class after 600ms so the site users can shake it again
     setTimeout(() => {
         globe.classList.remove("shaking");
         button.disabled = false;
@@ -27,3 +27,45 @@ button.addEventListener("click", () => {
     const pick = Math.floor(Math.random() * messages.length);
     message.textContent = messages[pick];
 });
+const canvas = document.getElementById("snow-canvas");
+const ctx = canvas.getContext("2d");
+
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener("resize", resizeCanvas);
+
+// Creates 50 snowflakes with random positions and speeds
+const flakes = Array.from({ length: 80 }, () => ({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    radius: Math.random() * 4 + 2,
+    speed: Math.random() * 1.5 + 0.8,
+    sway: Math.random() * 0.5 - 0.25
+}));
+
+function drawSnow() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
+    ctx.beginPath();
+
+    flakes.forEach(flake => {
+        ctx.moveTo(flake.x, flake.y);
+        ctx.arc(flake.x, flake.y, flake.radius, 0, Math.PI * 2);
+
+        // Move flake down
+        flake.y += flake.speed;
+
+        // Reset to top when it reaches the bottom
+        if (flake.y > canvas.height) {
+            flake.y = -flake.radius;
+            flake.x = Math.random() * canvas.width;
+        }
+    });
+
+    ctx.fill();
+    requestAnimationFrame(drawSnow);
+}
+drawSnow();
