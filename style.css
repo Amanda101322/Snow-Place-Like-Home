@@ -103,4 +103,19 @@ footer {
     pointer-events: none;
     z-index: 0;
 }
-
+.sound-toggle-container {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+#sound-toggle {
+    background: transparent;
+    color: #235fd4;
+    border: 1px solid #235fd4;
+    border-radius: 15px;
+    padding: 0.5rem 0.8rem;
+    font-size: 0.85rem;
+}
+#sound-toggle:hover {
+    background: #235fd4;
+    color: #ffffff;
+}
