@@ -69,3 +69,36 @@ function drawSnow() {
     requestAnimationFrame(drawSnow);
 }
 drawSnow();
+const shakeSound = new Audio("snowglobe-shake-sound.mp3");
+const soundToggle = document.querySelector("#sound-toggle");
+let isMuted = false;
+
+soundToggle.addEventListener("click", () => {
+    isMuted = !isMuted;
+    soundToggle.textContent = isMuted ? "🔇 Sound Off" :  "Sound On";
+    
+    if (isMuted) {
+        shakeSound.pause();
+        shakeSound.currentTime = 0;
+    }
+});
+
+
+button.addEventListener("click", () => {
+    button.disabled = true;
+
+    if (!isMuted) {
+        shakeSound.currentTime = 0;
+        shakeSound.play().catch(() => {});
+    }
+    globe.classList.add("shaking");
+    setTimeout(() => {
+        globe.classList.remove("shaking");
+        button.disabled = false;
+        shakeSound.pause();
+        shakeSound.currentTime = 0;
+    }, 600);
+
+    const pick = Math.floor(Math.random() * messages.length);
+    message.textContent = messages[pick];
+});
