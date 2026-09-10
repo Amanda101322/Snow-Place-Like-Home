@@ -20,9 +20,16 @@
             <div class="globe" id="globe">
                 <img class="scene" src="snowglobe.png" alt="a big snowglobe" />
             </div>
-            <div class="globe-shaking-control">
+            <div class="controls">
               <button id="shake">shake the globe</button>
-              <p class="message" id="message">press the button and get your fate told</p>
+              <div class="warmth-meter">
+                <p>Warmth Spread: <span id="counter">0</span> times</p>
+              </div>
+
+              <div id="fortune-card" class="fortune-card hidden">
+                <span id="fortune-category" class="category-badge">Your Winter Fate</span>
+                <p id="message" class="fortune-text">press the button and get your winter fate told</p>
+              </div>
             </div>
         </section>
     </main>
