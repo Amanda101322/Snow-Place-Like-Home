@@ -1,6 +1,10 @@
 const globe = document.querySelector("#globe");
 const button = document.querySelector("#shake");
-const message = document.querySelector("#message");
+const messageELement = document.querySelector("#message");
+const counterElement = document.querySelector("#counter");
+
+let warmthCount = parseInt(localStorage.getItem("warmthCount")) || 0;
+counterElement.textContent = warmthCount;
 
 const messages = [
     "you are someone's favourite person to sit next to",
@@ -10,31 +14,15 @@ const messages = [
     "someone is going to love what you make with this",
     "hot chocolate tastes better after a hot day",
     "I am so glad your journey brought you to this page today",
-    "you ask good questions. that is the whole skill",
+    "you ask good questions-that is the whole skill",
     "you sweeten the sourest of days",
     "cheering you on cause you deserve everything that comes your way",
     "this is a good week to have a good week",
     "you make the good times better and the hard times easier",
     "if you're having a tough day, remember you'll survive",
-    "you deserve all the good thigs life has to offer"
+    "you deserve all the good things life has to offer"
 ];
 
-button.addEventListener("click", () => {
-    button.disabled = true;
-
-    // to trigger the shake animation class
-    globe.classList.add("shaking");
-
-    // Removes animation class after 600ms so the site users can shake it again
-    setTimeout(() => {
-        globe.classList.remove("shaking");
-        button.disabled = false;
-    }, 600);
-
-    // This will pick a random message from the array
-    const pick = Math.floor(Math.random() * messages.length);
-    message.textContent = messages[pick];
-});
 const canvas = document.getElementById("snow-canvas");
 const ctx = canvas.getContext("2d");
 
@@ -93,6 +81,12 @@ soundToggle.addEventListener("click", () => {
 
 button.addEventListener("click", () => {
     button.disabled = true;
+
+    warmthCount = warmthCount + 1;
+    if (counterElement) {
+    counterElement.textContent = warmthCount;
+}
+    localStorage.setItem("warmthCount", warmthCount);
 
     if (!isMuted) {
         shakeSound.currentTime = 0;
