@@ -4,11 +4,19 @@ const message = document.querySelector("#message");
 
 const messages = [
     "you are someone's favourite person to sit next to",
+    "sending sunshine your way",
     "the thing you are building counts, even half finished",
     "you are allowed to be a beginner for as long as you want",
     "someone is going to love what you make with this",
     "hot chocolate tastes better after a hot day",
+    "I am so glad your journey brought you to this page today",
     "you ask good questions. that is the whole skill",
+    "you sweeten the sourest of days",
+    "cheering you on cause you deserve everything that comes your way",
+    "this is a good week to have a good week",
+    "you make the good times better and the hard times easier",
+    "if you're having a tough day, remember you'll survive",
+    "you deserve all the good thigs life has to offer"
 ];
 
 button.addEventListener("click", () => {
@@ -82,7 +90,6 @@ soundToggle.addEventListener("click", () => {
         shakeSound.currentTime = 0;
     }
 });
-
 
 button.addEventListener("click", () => {
     button.disabled = true;

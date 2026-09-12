@@ -14,28 +14,30 @@ h1 {
     color: #df5034;
 }
 .hero {
-    padding: 3rem 1rem 1rem;
+    padding: 1.5rem 1rem 0.5rem;
     text-align: center;
     position: relative;
     z-index: 1;
 }
 main {
-    max-width: 40rem;
+    max-width: 62rem;
     margin: 0 auto;
-    padding: 0 1rem 4rem;
-    position: relative;
-    z-index: 1;
+    padding: 0 1rem 0.5rem;
 }
 .globe-card {
     background: #fdf7e8;
     border-radius: 50%;
     border: 2px solid #235fd4;
-    padding: 2rem;
+    padding: 3rem 6rem;
     display: flex;
-    gap: 2rem;
+    flex-direction: row;
+    box-shadow: 0 10px 25px rgba(35, 95, 212, 0.1);
+    gap: 2.5rem;
     justify-content: center;
     background: radial-gradient(circle at 30% 35%, #ffffff, #d4eafc);
     align-items: center;
+    width: 100%;
+    box-sizing: border-box;
 }
 .globe {
     width: 12rem;
@@ -91,10 +93,9 @@ footer {
     text-align: center;
     font-size: 0.9rem;
     opacity: 0.8;
-    padding-bottom: 2rem;
+    padding-bottom: 0.5rem 1rem 1rem;
 }
 #snow-canvas {
-    position: fixed;
     position: fixed;
     top: 0;
     left: 0;
@@ -118,4 +119,47 @@ footer {
 #sound-toggle:hover {
     background: #235fd4;
     color: #ffffff;
+}
+.fortune-card {
+    background: #ffffff;
+    border: 1.5px solid #235fd4;
+    border-radius: 14px;
+    padding: 0.75rem 1.25rem;
+    box-shadow: 0 6px 15px rgba(35, 95, 212, 0.12);
+    max-width: 16rem;
+    text-align: center;
+    transition: all 0.4s ease;
+}
+.category-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #df5034;
+    background: #fdf7e8;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    margin-bottom: 0.5rem;
+}
+
+.fortune-text {
+    font-style: italic;
+    color: #162d4f;
+    margin: 0;
+    line-height: 1.4;
+}
+.fortune-card.show {
+    opacity: 1;
+    transform: translateY(0);
+    animation: slideUp 400ms ease-out forwards;
+}
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    } to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
