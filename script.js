@@ -1,7 +1,8 @@
 const globe = document.querySelector("#globe");
 const button = document.querySelector("#shake");
-const messageELement = document.querySelector("#message");
+const messageElement = document.querySelector("#message");
 const counterElement = document.querySelector("#counter");
+const fortuneCard = document.querySelector("#fortune-card");
 
 let warmthCount = parseInt(localStorage.getItem("warmthCount")) || 0;
 counterElement.textContent = warmthCount;
@@ -102,4 +103,36 @@ button.addEventListener("click", () => {
 
     const pick = Math.floor(Math.random() * messages.length);
     message.textContent = messages[pick];
+});
+button.addEventListener("click", () => {
+    button.disabled = true;
+    if (fortuneCard) {
+        fortuneCard.classList.remove("show");
+    }
+
+    warmthCount++;
+    counterElement.textContent = warmthCount;
+    localStorage.setItem("warmthCount", warmthCount.toString());
+
+    if (!isMuted) {
+        shakeSound.currentTime = 0;
+        shakeSound.play().catch(() => {});
+    }
+    globe.classList.add("shaking");
+
+    setTimeout(() => {
+        globe.classList.remove("shaking");
+        button.disabled = false;
+        shakeSound.pause();
+        shakeSound.currentTime = 0;
+
+        const pick = Math.floor(Math.random() * messages.length);
+        if (messageElement) {
+            messageElement.textContent = messages[pick];
+        }
+
+        if (fortuneCard) {
+            fortuneCard.classList.add("show");
+        }
+    }, 600);
 });

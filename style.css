@@ -128,7 +128,9 @@ footer {
     box-shadow: 0 6px 15px rgba(35, 95, 212, 0.12);
     max-width: 16rem;
     text-align: center;
-    transition: all 0.4s ease;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    opacity: 0;
+    transform: translateY(15px);
 }
 .category-badge {
     display: inline-block;
@@ -152,14 +154,15 @@ footer {
 .fortune-card.show {
     opacity: 1;
     transform: translateY(0);
-    animation: slideUp 400ms ease-out forwards;
+    animation: fortunePop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    pointer-events: auto;
 }
-@keyframes slideUp {
-    from {
+@keyframes fortunePop {
+    0% {
         opacity: 0;
-        transform: translateY(15px);
-    } to {
+        transform: translateY(18px) scale(0.95);
+    } 100% {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
     }
 }
