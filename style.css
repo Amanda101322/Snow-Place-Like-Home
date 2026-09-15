@@ -226,3 +226,47 @@ body.dark-mode #theme-toggle:hover {
     background: #60a5fa;
     color: #0f172a;
 }
+.welcome-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(15, 23, 42, 0.75);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+.welcome-overlay.hidden {
+    display: none;
+}
+.welcome-card {
+    background: #ffffff;
+    border: 2px solid #3b82f6;
+    border-radius: 15px;
+    padding: 30px 20px;
+    text-align: center;
+    width: 90%;
+    max-width: 320px;
+    box-shadow: 0 10px 25px rgba(0,0,0.3);
+    animation: bounce 1s ease infinite alternate;
+}
+.snowman-avatar {
+    font-size: 60px;
+    margin-bottom: 10px;
+}
+.welcome-card h2 {
+    color: #1e40af;
+    margin: 0 0 10px 0;
+}
+.welcome-card p {
+    color: #333;
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+@keyframes bounce {
+    from { transform: translateY(0); }
+    to { transform: translateY(-8px); }
+}

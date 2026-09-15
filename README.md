@@ -19,7 +19,7 @@ Shake for a little winter kindness! This is a cozy, interactive web app built to
 - HTML5 Canvas and 
 - JavaScript
 
-* **Credits:** 
+## Credits:
 I got the chime sound from Pixabay, and the starting point of the snowglobe was Athena's **Build a Snowglobe** tutorial.
 
 ## To clone or download this repo
