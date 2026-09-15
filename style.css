@@ -245,17 +245,24 @@ body.dark-mode #theme-toggle:hover {
 .welcome-card {
     background: #ffffff;
     border: 2px solid #3b82f6;
-    border-radius: 15px;
-    padding: 30px 20px;
-    text-align: center;
+    border-radius: 24px;
+    padding: 2.5rem 2rem;
+    align-items: center;
+    flex-direction: row;
+    display: flex;
     width: 90%;
     max-width: 320px;
-    box-shadow: 0 10px 25px rgba(0,0,0.3);
+    gap: 1.5rem;
+    max-width: 32rem;
+    box-shadow: 0 12px 30px rgba(0,0,0.3);
     animation: bounce 1s ease infinite alternate;
 }
 .snowman-avatar {
-    font-size: 60px;
-    margin-bottom: 10px;
+    width: 140px;
+    height: auto;
+    max-width: 35%;
+    flex-shrink: 0;
+    object-fit: contain;
 }
 .welcome-card h2 {
     color: #1e40af;
