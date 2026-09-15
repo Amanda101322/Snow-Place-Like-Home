@@ -3,6 +3,8 @@ const button = document.querySelector("#shake");
 const messageElement = document.querySelector("#message");
 const counterElement = document.querySelector("#counter");
 const fortuneCard = document.querySelector("#fortune-card");
+const themeToggle = document.querySelector("#theme-toggle");
+const currentTheme = localStorage.getItem("theme");
 
 let warmthCount = parseInt(localStorage.getItem("warmthCount")) || 0;
 counterElement.textContent = warmthCount;
@@ -79,31 +81,6 @@ soundToggle.addEventListener("click", () => {
         shakeSound.currentTime = 0;
     }
 });
-
-button.addEventListener("click", () => {
-    button.disabled = true;
-
-    warmthCount = warmthCount + 1;
-    if (counterElement) {
-    counterElement.textContent = warmthCount;
-}
-    localStorage.setItem("warmthCount", warmthCount);
-
-    if (!isMuted) {
-        shakeSound.currentTime = 0;
-        shakeSound.play().catch(() => {});
-    }
-    globe.classList.add("shaking");
-    setTimeout(() => {
-        globe.classList.remove("shaking");
-        button.disabled = false;
-        shakeSound.pause();
-        shakeSound.currentTime = 0;
-    }, 600);
-
-    const pick = Math.floor(Math.random() * messages.length);
-    message.textContent = messages[pick];
-});
 button.addEventListener("click", () => {
     button.disabled = true;
     if (fortuneCard) {
@@ -135,4 +112,14 @@ button.addEventListener("click", () => {
             fortuneCard.classList.add("show");
         }
     }, 600);
+});
+if (currentTheme === "dark") {
+    document.body.classList.add("dark-mode");
+    themeToggle.textContent = "☼";
+}
+themeToggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+    const isDark = document.body.classList.contains("dark-mode");
+    themeToggle.textContent = isDark ? "☼" : "☾";
+    localStorage.setItem("theme", isDark ? "dark" : "light");
 });
