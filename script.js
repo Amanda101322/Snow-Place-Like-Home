@@ -163,9 +163,7 @@ function  dismissOverlay() {
     }
 }
 if (enterBtn) {
- if (overlay && !overlay.classList.contains('hidden')) {
-    overlay.classList.add('hidden');
- }
+    enterBtn.addEventListener('click', dismissOverlay);
 }
 
 window.addEventListener('keyup', (event) => {
