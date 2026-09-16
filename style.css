@@ -93,13 +93,13 @@ button:disabled {
   100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
 .globe.shaking {
-  animation: shake 600ms ease;
+  animation: shakeEffect 600ms ease;
 }
 footer {
     text-align: center;
     font-size: 0.9rem;
     opacity: 0.8;
-    padding-bottom: 0.5rem 1rem 1rem;
+    padding: 0.5rem 1rem 1rem;
 }
 #snow-canvas {
     position: fixed;
@@ -160,6 +160,8 @@ footer {
 }
 .fortune-card.show {
     opacity: 1;
+    display: flex;
+    flex-direction: column;
     transform: translateY(0);
     animation: fortunePop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
     pointer-events: auto;
@@ -228,7 +230,7 @@ body.dark-mode #theme-toggle {
     color: #93c5fd;
     background: transparent;
 }
-body-dark-mode sound-toggle:hover,
+body.dark-mode #sound-toggle:hover,
 body.dark-mode #theme-toggle:hover {
     background: #60a5fa;
     color: #0f172a;
