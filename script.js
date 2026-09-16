@@ -95,8 +95,8 @@ if (button) {
 button.addEventListener("click", () => {
     button.disabled = true;
     warmthCount++;
-    if (fortuneCard) {
-        fortuneCard.classList.remove("show");
+    if (counterElement) {
+        counterElement.textContent = warmthCount;
     }
     localStorage.setItem("warmthCount", warmthCount);
 
