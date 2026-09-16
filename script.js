@@ -32,7 +32,8 @@ const messages = [
 ];
 
 const canvas = document.getElementById("snow-canvas");
-const ctx = canvas.getContext("2d");
+if (canvas) {
+    const ctx = canvas.getContext("2d");
 
 function resizeCanvas() {
     canvas.width = window.innerWidth;
@@ -58,7 +59,7 @@ function drawSnow() {
     ctx.beginPath();
 
    for (let i =0; i < flakes.length; i++) {
-    let f = flakes[i];
+    const f = flakes[i];
         ctx.moveTo(f.x, f.y);
         ctx.arc(f.x, f.y, f.radius, 0, Math.PI * 2);
 
@@ -68,12 +69,12 @@ function drawSnow() {
             f.y = -f.radius;
             f.x = Math.random() * canvas.width;
         }
-    }
-
-    ctx.fill();
-    requestAnimationFrame(drawSnow);
+   }
+        ctx.fill();
+        requestAnimationFrame(drawSnow);
 }
 drawSnow();
+}
 
 const shakeSound = new Audio("snowglobe-shake-sound.mp3");
 const soundToggle = document.querySelector("#sound-toggle");
@@ -96,9 +97,9 @@ button.addEventListener("click", () => {
     button.disabled = true;
     warmthCount++;
     if (counterElement) {
-        counterElement.textContent = warmthCount;
+    counterElement.textContent = warmthCount;
     }
-    localStorage.setItem("warmthCount", warmthCount);
+    localStorage.setItem("warmthCount", warmthCount.toString());
 
     if (!isMuted) {
         shakeSound.currentTime = 0;
@@ -107,10 +108,9 @@ button.addEventListener("click", () => {
     if (globe) {
     globe.classList.add("shaking");
     }
-    
     setTimeout(() => {
         if (globe) {
-            globe.classList.remove("shaking");
+        globe.classList.remove("shaking");
         }
         button.disabled = false;
         shakeSound.pause();
@@ -129,7 +129,6 @@ button.addEventListener("click", () => {
     }, 600);
 });
 }
-
 if (currentTheme === "dark") {
     document.body.classList.add("dark-mode");
     if (themeToggle) {
@@ -166,7 +165,7 @@ if (enterBtn) {
     enterBtn.addEventListener('click', dismissOverlay);
 }
 
-window.addEventListener('keyup', (event) => {
+window.addEventListener("keyup", (event) => {
     if (event.key === 'Enter') {
         dismissOverlay();
     }
