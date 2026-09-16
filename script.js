@@ -5,9 +5,14 @@ const counterElement = document.querySelector("#counter");
 const fortuneCard = document.querySelector("#fortune-card");
 const themeToggle = document.querySelector("#theme-toggle");
 const currentTheme = localStorage.getItem("theme");
+const overlay = document.getElementById('welcome-overlay');
+const enterBtn = document.getElementById('enter-btn');
+const greeting = document.getElementById('snowman-greeting');
 
 let warmthCount = parseInt(localStorage.getItem("warmthCount")) || 0;
-counterElement.textContent = warmthCount;
+if (counterElement) {
+    counterElement.textContent = warmthCount;
+}
 
 const messages = [
     "you are someone's favourite person to sit next to",
@@ -36,42 +41,45 @@ function resizeCanvas() {
 resizeCanvas();
 window.addEventListener("resize", resizeCanvas);
 
-// Creates 50 snowflakes with random positions and speeds
-const flakes = Array.from({ length: 80 }, () => ({
+// Sets up snowflake array
+let flakes = [];
+for (let i = 0; i < 75; i++) {
+    flakes.push({
     x: Math.random() * canvas.width,
     y: Math.random() * canvas.height,
     radius: Math.random() * 4 + 2,
-    speed: Math.random() * 1.5 + 0.8,
-    sway: Math.random() * 0.5 - 0.25
-}));
+    speed: Math.random() * 1.5 + 0.8
+    });
+}
 
 function drawSnow() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
     ctx.beginPath();
 
-    flakes.forEach(flake => {
-        ctx.moveTo(flake.x, flake.y);
-        ctx.arc(flake.x, flake.y, flake.radius, 0, Math.PI * 2);
+   for (let i =0; i < flakes.length; i++) {
+    let f = flakes[i];
+        ctx.moveTo(f.x, f.y);
+        ctx.arc(f.x, f.y, f.radius, 0, Math.PI * 2);
 
-        // Move flake down
-        flake.y += flake.speed;
+        f.y += f.speed;
 
-        // Reset to top when it reaches the bottom
-        if (flake.y > canvas.height) {
-            flake.y = -flake.radius;
-            flake.x = Math.random() * canvas.width;
+        if (f.y > canvas.height) {
+            f.y = -f.radius;
+            f.x = Math.random() * canvas.width;
         }
-    });
+    }
 
     ctx.fill();
     requestAnimationFrame(drawSnow);
 }
 drawSnow();
+
 const shakeSound = new Audio("snowglobe-shake-sound.mp3");
 const soundToggle = document.querySelector("#sound-toggle");
 let isMuted = false;
 
+if (soundToggle) {
 soundToggle.addEventListener("click", () => {
     isMuted = !isMuted;
     soundToggle.textContent = isMuted ? "🔇 Sound Off" :  "Sound On";
@@ -81,45 +89,87 @@ soundToggle.addEventListener("click", () => {
         shakeSound.currentTime = 0;
     }
 });
+}
+
+if (button) {
 button.addEventListener("click", () => {
     button.disabled = true;
+    warmthCount++;
     if (fortuneCard) {
         fortuneCard.classList.remove("show");
     }
-
-    warmthCount++;
-    counterElement.textContent = warmthCount;
-    localStorage.setItem("warmthCount", warmthCount.toString());
+    localStorage.setItem("warmthCount", warmthCount);
 
     if (!isMuted) {
         shakeSound.currentTime = 0;
         shakeSound.play().catch(() => {});
     }
+    if (globe) {
     globe.classList.add("shaking");
-
+    }
+    
     setTimeout(() => {
-        globe.classList.remove("shaking");
+        if (globe) {
+            globe.classList.remove("shaking");
+        }
         button.disabled = false;
         shakeSound.pause();
         shakeSound.currentTime = 0;
 
-        const pick = Math.floor(Math.random() * messages.length);
+        const randomIndex = Math.floor(Math.random() * messages.length);
         if (messageElement) {
-            messageElement.textContent = messages[pick];
+            messageElement.textContent = messages[randomIndex];
         }
 
         if (fortuneCard) {
+            fortuneCard.classList.remove("show");
+            void fortuneCard.offsetWidth;
             fortuneCard.classList.add("show");
         }
     }, 600);
 });
+}
+
 if (currentTheme === "dark") {
     document.body.classList.add("dark-mode");
+    if (themeToggle) {
     themeToggle.textContent = "☼";
 }
+}
+
+if (themeToggle) {
 themeToggle.addEventListener("click", () => {
     document.body.classList.toggle("dark-mode");
     const isDark = document.body.classList.contains("dark-mode");
     themeToggle.textContent = isDark ? "☼" : "☾";
     localStorage.setItem("theme", isDark ? "dark" : "light");
+});
+}
+
+const currentHour = new Date().getHours();
+if (greeting) {
+if (currentHour < 12) {
+    greeting.textContent = "Good morning! Ready for some winter kindness"
+} else if (currentHour < 18) {
+    greeting.textContent = "Good afternoon! Warm up with a cozy fortune"
+} else {
+    greeting.textContent = "Good evening! Shake the globe for tonight's warmth"
+}
+}
+
+function  dismissOverlay() {
+    if (overlay &&!overlay.classList.contains('hidden')) {
+        overlay.classList.add('hidden');
+    }
+}
+if (enterBtn) {
+ if (overlay && !overlay.classList.contains('hidden')) {
+    overlay.classList.add('hidden');
+ }
+}
+
+window.addEventListener('keyup', (event) => {
+    if (event.key === 'Enter') {
+        dismissOverlay();
+    }
 });
