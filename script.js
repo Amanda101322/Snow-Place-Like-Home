@@ -156,7 +156,7 @@ if (currentHour < 12) {
 }
 }
 
-function  dismissOverlay() {
+function dismissOverlay() {
     if (overlay &&!overlay.classList.contains('hidden')) {
         overlay.classList.add('hidden');
     }
