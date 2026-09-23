@@ -10,17 +10,21 @@ Shake for a little winter kindness! This is a cozy, interactive web app built to
 - **Shakeable Snowglobe:** The highlight of the site... Give the globe a shake and it will bring up a new piece of winter advice or encouragement.
 - **Animated Fortune Cards:** When the globe is done shaking, a little card pops and slides into view with a winter message.
 - **Live Canvas Snowfall:** The beauty of the site....there's background snow falling while you use the site and it's rendered in real time using HTML5 canvas and JavaScript.
-- **A Warmth Meter** which keeps track of how many times  the snowglobe has been shaken. The count is saved in your browser using local storage, so it stays there even when you come back later. The number goes up by 1 as you continue shaking.
+- **Warmth Meter** which keeps track of how many times  the snowglobe has been shaken. The count is saved in your browser using local storage, so it stays there even when you come back later. The number goes up by 1 as you continue shaking.
 - **Light/dark mode toggle:** You can switch between a soft daytime sky and a oh-so-dreamy starry midnight theme whenever you click the toggle.
 - **Cozy Chimes:** A little bell sound plays when the globe is shaken to make it feel more like you're actually shaking the globe. There's also a sound-off button if you want a quiet browsing session.
 ## This was built with: 
 - HTML5
 - CSS3
-- HTML5 Canvas and 
+- HTML5 Canvas 
 - JavaScript
 
+## Development
+A large part of building this project was figuring how the different JavaScript interactions worked together. I spent a lot of time debugging recurring issues, testing the interactions, and fixing problems with elements not appearing or behaving as expected.
+
 ## Credits:
-I got the chime sound from Pixabay, and the starting point of the snowglobe was Athena's **Build a Snowglobe** tutorial.
+- The chime sound was sourced from Pixabay
+- The starting point for the snow globe was Athena's Snowglobe **Build a Snowglobe** tutorial. 
 
 ## To clone or download this repo
 You don't need any fancy build steps or installations. 
